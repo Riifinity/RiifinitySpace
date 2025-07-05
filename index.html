@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riifinity Space – Start</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}html,body{height:100%;font-family:'Poppins',sans-serif;}
+    .loader {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.8);display: flex;align-items: center;justify-content: center;color: white;font-size: 24px;z-index: 9999;}
+    .hero{background:url('https://files.catbox.moe/d0mgtp.jpg') center/cover no-repeat;min-height:100%;display:none;align-items:center;justify-content:center;text-align:center;color:#fff;position:relative;}
+    .hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);}
+    .hero-content{position:relative;z-index:1;max-width:90%;}
+    .title-big{font-size:clamp(32px,7vw,72px);font-weight:700;margin-bottom:12px;}
+    .title-sm{font-size:clamp(18px,4.5vw,32px);font-weight:400;margin-bottom:12px;}
+    .tagline{font-size:clamp(16px,4vw,28px);font-weight:400;margin:12px 0;}
+    .info-text{font-size:clamp(14px,3.5vw,24px);font-weight:400;margin-bottom:12px;}
+    h1 span,h2 span,h3 span,p span{display:inline-block;opacity:0;white-space:pre;}
+    .ltr{animation:slideLeft .8s forwards;animation-delay:var(--d);} .rtl{animation:slideRight .8s forwards;animation-delay:var(--d);}
+    @keyframes slideLeft{from{transform:translateX(-40px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+    @keyframes slideRight{from{transform:translateX(40px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+    .ttb{animation:slideTop .6s forwards;animation-delay:var(--d);} .btt{animation:slideBottom .6s forwards;animation-delay:var(--d);}
+    @keyframes slideTop{from{transform:translateY(-40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    @keyframes slideBottom{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    @keyframes dropIn{from{transform:translateY(-80px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    @keyframes fieldDown{from{transform:translateY(-40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    @keyframes slideInRight{from{transform:translateX(40px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+    @keyframes slideInUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    .logo-img{width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto;opacity:0;transform:translateY(-80px);}
+    .input-nama{padding:14px 16px;font-size:16px;border-radius:10px;border:none;margin-bottom:16px;width:80%;max-width:300px;background:rgba(128,128,128,0.25);color:#fff;caret-color:#fff;
+      box-shadow:inset 2px 2px 4px rgba(0,0,0,.3),inset -2px -2px 4px rgba(255,255,255,.05);}
+    .input-nama::placeholder{color:#fff;opacity:.7;}
+    .btn-name,.btn-start{display:inline-block;padding:12px 24px;font-size:16px;font-weight:700;border-radius:10px;border:1px solid #aaa;text-decoration:none;
+      box-shadow:0 4px 10px rgba(0,0,0,.4);cursor:pointer;background:rgba(128,128,128,0.25);color:#fff;transition:background .3s;}
+    .btn-name:hover,.btn-start:hover{background:rgba(255,255,255,0.15);} .btn-name{margin-top:12px;}
+    .btn-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+    #nama-form{display:flex;flex-direction:column;align-items:center;} #main-content{display:none;}
+    .audio-player{display:none !important;}
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">Loading...</div>
+
+  <audio id="bg-music" class="audio-player" src="https://files.catbox.moe/eux0yv.mp3" preload="auto" loop></audio>
+
+  <section class="hero">
+    <div class="hero-content" id="nama-form">
+      <h2 class="title-sm title-form">Masukkan Nama Anda</h2>
+      <input type="text" id="nama" class="input-nama" placeholder="Contoh: Rii" />
+      <button class="btn-name" onclick="mulai()"><strong>Lanjut</strong></button>
+    </div>
+
+    <div class="hero-content" id="main-content">
+      <img src="https://files.catbox.moe/iad90i.webp" alt="logo" class="logo-img" />
+      <h3 class="tagline anim-lr tagline-text">Amerta Dalam Senyum Fana</h3>
+      <h2 class="title-sm anim-lr intro-1"></h2>
+      <h2 class="title-sm anim-lr intro-1b">Perkenalkan saya adalah</h2>
+      <h1 class="title-big anim-lr intro-2">Riifinity Space</h1>
+      <p class="info-text anim-tb">Selamat Datang Di Website Saya</p>
+      <p class="info-text anim-tb">Pilih Salah Satu Untuk Melanjutkan</p>
+      <div class="btn-group">
+        <a id="btn-shop" class="btn-start btn-shop" href="#">Shop Menu</a>
+        <a id="btn-pay" class="btn-start btn-pay" href="#">Payment</a>
+        <a id="btn-owner" class="btn-start btn-owner" href="#">Info Owner</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const assetsToPreload = [
+      'https://files.catbox.moe/d0mgtp.jpg',
+      'https://files.catbox.moe/iad90i.webp',
+      'https://files.catbox.moe/eux0yv.mp3'
+    ];
+
+    function preloadAssets(urls, callback) {
+      let loaded = 0;
+      const total = urls.length;
+      urls.forEach(url => {
+        const media = url.endsWith('.mp3') ? new Audio() : new Image();
+        media.onloadeddata = media.onload = () => {
+          loaded++;
+          if (loaded === total) callback();
+        };
+        media.onerror = () => {
+          loaded++;
+          if (loaded === total) callback();
+        };
+        media.src = url;
+      });
+    }
+
+    function splitText(el, evenCls, oddCls, baseDelay, charStep, kfDur) {
+      const txt = el.textContent;
+      el.textContent = '';
+      let i = 0;
+      [...txt].forEach(ch => {
+        const s = document.createElement('span');
+        s.innerHTML = (ch === ' ') ? '&nbsp;' : ch;
+        if (ch === ' ') { s.style.opacity = '1'; }
+        else {
+          s.className = (i % 2 === 0) ? evenCls : oddCls;
+          s.style.setProperty('--d', (baseDelay + i * charStep) + 's');
+          i++;
+        }
+        el.appendChild(s);
+      });
+      return i;
+    }
+
+    function mulai() {
+      const nama = document.getElementById('nama').value.trim();
+      if (!nama) { alert('Silakan isi nama terlebih dahulu.'); return; }
+
+      const music = document.getElementById('bg-music');
+      music.play().catch(() => { });
+
+      document.querySelector('.intro-1').textContent = `Halo ${nama}`;
+      document.getElementById('nama-form').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+
+      const introStep = 0.1, introDur = 0.8, step = 0.05, dur = 0.6, gap = 0.5;
+      let t = 0;
+
+      document.querySelector('.logo-img').style.cssText =
+        `animation:dropIn 1.5s forwards;animation-delay:${t}s`;
+      t += 1.5 + gap;
+
+      const tg = document.querySelector('.tagline-text');
+      const tgLen = splitText(tg, 'ltr', 'rtl', t, introStep, introDur);
+      t += (tgLen - 1) * introStep + introDur + gap;
+
+      const lHo = splitText(document.querySelector('.intro-1'), 'ltr', 'rtl', t, introStep, introDur);
+      t += (lHo - 1) * introStep + introDur + gap;
+
+      const lP = splitText(document.querySelector('.intro-1b'), 'ltr', 'rtl', t, introStep, introDur);
+      const lR = splitText(document.querySelector('.intro-2'), 'ltr', 'rtl', t, introStep, introDur);
+      t += (Math.max(lP, lR) - 1) * introStep + introDur + 0.5;
+
+      let maxP = 0;
+      document.querySelectorAll('.anim-tb').forEach(el => {
+        const n = splitText(el, 'ttb', 'btt', t, step, dur);
+        maxP = Math.max(maxP, n);
+      });
+      t += (maxP - 1) * step + dur + gap;
+
+      document.querySelector('.btn-shop').style.cssText =
+        `opacity:0;transform:translateX(40px);animation:slideInRight .6s forwards;animation-delay:${t}s`;
+      document.querySelector('.btn-pay').style.cssText =
+        `opacity:0;transform:translateY(40px);animation:slideInUp .6s forwards;animation-delay:${t + 0.1}s`;
+      document.querySelector('.btn-owner').style.cssText =
+        `opacity:0;transform:translateX(40px);animation:slideInRight .6s forwards;animation-delay:${t + 0.2}s`;
+    }
+
+    const linkShop = "https://glowing-caramel-aa6dd8.netlify.app/";
+    const linkPay = "https://tranquil-otter-bc6c85.netlify.app/";
+    const linkOwner = "https://frolicking-jalebi-11d8b3.netlify.app/";
+    document.getElementById('btn-shop').href = linkShop;
+    document.getElementById('btn-pay').href = linkPay;
+    document.getElementById('btn-owner').href = linkOwner;
+
+    window.addEventListener('load', () => {
+      preloadAssets(assetsToPreload, () => {
+        document.getElementById('loader').style.display = 'none';
+        document.querySelector('.hero').style.display = 'flex';
+
+        const formTitle = document.querySelector('.title-form');
+        const introStep = 0.1, introDur = 0.8, gap = 0.5;
+        let t = 0;
+
+        const len = splitText(formTitle, 'ltr', 'rtl', t, introStep, introDur);
+        t += (len - 1) * introStep + introDur + gap;
+
+        document.querySelector('.input-nama').style.cssText =
+          `opacity:0;transform:translateY(-40px);animation:fieldDown .6s forwards;animation-delay:${t}s`;
+        document.querySelector('.btn-name').style.cssText =
+          `opacity:0;transform:translateY(-40px);animation:fieldDown .6s forwards;animation-delay:${t + 1}s`;
+      });
+    });
+  </script>
+</body>
+</html>
